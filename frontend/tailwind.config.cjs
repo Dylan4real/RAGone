@@ -25,17 +25,40 @@ module.exports = {
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         "chat-user": "hsl(var(--chat-user))",
-        "chat-assistant": "hsl(var(--chat-assistant))"
+        "chat-assistant": "hsl(var(--chat-assistant))",
+        /* Claude Design System */
+        coral: { DEFAULT: "#cc785c", active: "#a9583e", disabled: "#e6dfd8" },
+        "claude-teal": "#5db8a6",
+        "claude-amber": "#e8a55a",
+        canvas: "#faf9f5",
+        "surface-soft": "#f5f0e8",
+        "surface-card": "#efe9de",
+        "cream-strong": "#e8e0d2",
+        "surface-dark": "#181715",
+        "dark-elevated": "#252320",
+        "dark-soft": "#1f1e1b",
+        hairline: "#e6dfd8",
+        "hairline-soft": "#ebe6df",
+        ink: "#141413",
+        "body-strong": "#252523",
+        body: "#3d3d3a",
+        "muted-claude": "#6c6a64",
+        "muted-soft": "#8e8b82",
+        "on-primary": "#ffffff",
+        "on-dark": "#faf9f5",
+        "on-dark-soft": "#a09d96",
+        success: "#5db872",
+        warning: "#d4a017",
+        error: "#c64545"
       },
       fontFamily: {
-        display: ["'Space Grotesk'", "ui-sans-serif", "system-ui"],
-        body: ["'DM Sans'", "ui-sans-serif", "system-ui"],
+        display: ["'Cormorant Garamond'", "Garamond", "'Times New Roman'", "serif", "'PingFang SC'", "'Microsoft YaHei'"],
+        body: ["'Inter'", "system-ui", "sans-serif", "'PingFang SC'", "'Microsoft YaHei'"],
         mono: ["'JetBrains Mono'", "ui-monospace", "SFMono-Regular"]
       },
       boxShadow: {
-        soft: "0 24px 60px -30px rgba(10, 10, 15, 0.65)",
-        glow: "0 0 0 1px rgba(59, 130, 246, 0.2), 0 16px 40px rgba(59, 130, 246, 0.25)",
-        neon: "0 0 30px rgba(59, 130, 246, 0.35)"
+        soft: "0 24px 60px -30px rgba(10, 10, 15, 0.45)",
+        glow: "0 0 0 1px rgba(204, 120, 92, 0.2), 0 12px 32px rgba(204, 120, 92, 0.2)"
       },
       keyframes: {
         "fade-up": {

@@ -4,66 +4,66 @@
 
 :root {
   color-scheme: light;
-  --background: 0 0% 100%;
-  --foreground: 222 47% 11%;
-  --card: 210 40% 98%;
-  --card-foreground: 222 47% 11%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 222 47% 11%;
-  --primary: 239 84% 67%;
+  --background: 48 33% 97%;
+  --foreground: 50 5% 8%;
+  --card: 36 27% 92%;
+  --card-foreground: 50 5% 8%;
+  --popover: 48 33% 97%;
+  --popover-foreground: 50 5% 8%;
+  --primary: 14 43% 58%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 210 40% 96%;
-  --secondary-foreground: 222 47% 11%;
-  --muted: 214 32% 91%;
-  --muted-foreground: 215 16% 47%;
-  --accent: 210 40% 96%;
-  --accent-foreground: 222 47% 11%;
-  --destructive: 0 84% 60%;
+  --secondary: 36 27% 92%;
+  --secondary-foreground: 50 5% 8%;
+  --muted: 36 20% 86%;
+  --muted-foreground: 40 4% 41%;
+  --accent: 36 27% 92%;
+  --accent-foreground: 50 5% 8%;
+  --destructive: 0 53% 53%;
   --destructive-foreground: 0 0% 100%;
-  --border: 214 32% 91%;
-  --input: 214 32% 91%;
-  --ring: 239 84% 67%;
-  --chat-user: 239 84% 96%;
-  --chat-assistant: 0 0% 100%;
-  --glow: 239 84% 67%;
+  --border: 32 28% 88%;
+  --input: 32 28% 88%;
+  --ring: 14 43% 58%;
+  --chat-user: 36 27% 92%;
+  --chat-assistant: 48 33% 97%;
+  --glow: 14 43% 58%;
 
   /* ===== 新设计系统 - 背景 ===== */
-  --bg-primary: #ffffff;
-  --bg-secondary: #fafafa;
-  --bg-tertiary: #f5f5f5;
-  --bg-hover: #eeeeee;
+  --bg-primary: #faf9f5;
+  --bg-secondary: #f5f0e8;
+  --bg-tertiary: #efe9de;
+  --bg-hover: #e8e0d2;
   --bg-active: #fef3c7;
 
   /* ===== 新设计系统 - 文字 ===== */
-  --text-primary: #1a1a1a;
-  --text-secondary: #4a4a4a;
-  --text-tertiary: #999999;
-  --text-muted: #cccccc;
+  --text-primary: #141413;
+  --text-secondary: #3d3d3a;
+  --text-tertiary: #6c6a64;
+  --text-muted: #8e8b82;
   --text-on-accent: #ffffff;
 
-  /* ===== 新设计系统 - 强调色（蓝色系）===== */
-  --accent-primary: #3b82f6;
-  --accent-secondary: #2563eb;
-  --accent-light: #dbeafe;
-  --accent-hover: #60a5fa;
+  /* ===== 新设计系统 - 强调色（珊瑚色系）===== */
+  --accent-primary: #cc785c;
+  --accent-secondary: #a9583e;
+  --accent-light: #e6dfd8;
+  --accent-hover: #a9583e;
 
   /* ===== 新设计系统 - 边框 ===== */
-  --border-default: #e5e5e5;
-  --border-light: #f0f0f0;
-  --border-focus: #d4d4d4;
-  --border-accent: #bfdbfe;
+  --border-default: #e6dfd8;
+  --border-light: #ebe6df;
+  --border-focus: #cc785c;
+  --border-accent: #cc785c;
 
   /* ===== 新设计系统 - 状态色 ===== */
-  --success: #10b981;
-  --warning: #f59e0b;
-  --error: #ef4444;
-  --info: #3b82f6;
+  --success: #5db872;
+  --warning: #d4a017;
+  --error: #c64545;
+  --info: #5db8a6;
 
   /* ===== 新设计系统 - 圆角 ===== */
   --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
   --radius-full: 9999px;
 
   /* ===== 新设计系统 - 间距 ===== */
@@ -76,18 +76,17 @@
   --spacing-3xl: 48px;
   --spacing-4xl: 64px;
 
-  /* ===== 新设计系统 - 阴影 ===== */
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 6px 16px rgba(0, 0, 0, 0.08);
-  --shadow-xl: 0 10px 24px rgba(0, 0, 0, 0.1);
+  /* ===== 新设计系统 - 阴影（色块优先，阴影极少）===== */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 6px 14px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 10px 20px rgba(0, 0, 0, 0.06);
 
   /* ===== 新设计系统 - 字体 ===== */
-  --font-sans:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-serif: Georgia, "Times New Roman", serif;
-  --font-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-serif: 'Cormorant Garamond', Garamond, "Times New Roman", "PingFang SC", "Microsoft YaHei", serif;
+  --font-mono: "JetBrains Mono", "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
 
   /* ===== 新设计系统 - 字号 ===== */
   --text-xs: 12px;
@@ -121,17 +120,17 @@
   --header-height: 60px;
 
   /* ===== 旧变量保留（兼容性）===== */
-  --sidebar-bg: #fafafa;
-  --sidebar-item-active: #dbeafe;
-  --sidebar-item-hover: #f5f5f5;
-  --primary-color: #3b82f6;
-  --primary-light: #60a5fa;
-  --primary-dark: #2563eb;
-  --secondary-color: #3b82f6;
-  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  --gradient-light: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-  --dsw-alias-brand-primary-invert: #93c5fd;
-  --dsw-specific-sidebar-nav-item-active-accent: #eff6ff;
+  --sidebar-bg: #faf9f5;
+  --sidebar-item-active: #efe9de;
+  --sidebar-item-hover: #f5f0e8;
+  --primary-color: #cc785c;
+  --primary-light: #e6dfd8;
+  --primary-dark: #a9583e;
+  --secondary-color: #cc785c;
+  --gradient-primary: linear-gradient(135deg, #cc785c 0%, #a9583e 100%);
+  --gradient-light: linear-gradient(135deg, #faf9f5 0%, #f5f0e8 100%);
+  --dsw-alias-brand-primary-invert: #e6dfd8;
+  --dsw-specific-sidebar-nav-item-active-accent: #efe9de;
 }
 
 .dark {
@@ -149,7 +148,7 @@ body {
 }
 
 body {
-  @apply bg-[#FAFAFA] text-gray-900 font-body antialiased min-h-screen;
+  @apply bg-canvas text-ink font-body antialiased min-h-screen;
   background-color: var(--bg-secondary);
   overflow: hidden;
 }
@@ -173,7 +172,7 @@ select:focus:not(:focus-visible),
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d1d5db;
+  background: #e6dfd8;
   border-radius: 999px;
 }
 
@@ -182,7 +181,7 @@ select:focus:not(:focus-visible),
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
+  background: #cc785c;
 }
 
 .text-gradient {
@@ -194,8 +193,8 @@ select:focus:not(:focus-visible),
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid #e2e8f0;
+  background: rgba(250, 249, 245, 0.7);
+  border: 1px solid #e6dfd8;
   backdrop-filter: blur(20px);
 }
 
@@ -204,7 +203,7 @@ select:focus:not(:focus-visible),
 }
 
 .prose pre {
-  @apply bg-gray-50 text-gray-800;
+  @apply bg-surface-soft text-ink;
 }
 
 /* 缩小 Markdown 元素之间的间距 */
@@ -253,16 +252,16 @@ select:focus:not(:focus-visible),
 
 @layer components {
   .admin-layout {
-    @apply bg-[#F3F4F6] text-slate-900;
-    --ring: 224 76% 48%;
+    @apply bg-surface-soft text-ink;
+    --ring: 14 43% 58%;
   }
 
   .admin-layout .text-muted-foreground {
-    @apply text-slate-500;
+    @apply text-muted-claude;
   }
 
   .admin-layout .admin-main {
-    @apply flex-1 bg-[#F3F4F6];
+    @apply flex-1 bg-surface-soft;
   }
 
   .admin-layout .admin-content {
@@ -270,7 +269,7 @@ select:focus:not(:focus-visible),
   }
 
   .admin-layout .admin-topbar {
-    @apply sticky top-0 z-20 border-b border-slate-200/70 bg-white/80 backdrop-blur;
+    @apply sticky top-0 z-20 border-b border-hairline/70 bg-canvas/80 backdrop-blur;
   }
 
   .admin-layout .admin-topbar-inner {
@@ -282,31 +281,31 @@ select:focus:not(:focus-visible),
   }
 
   .admin-layout .admin-topbar-kbd {
-    @apply absolute right-3 top-1/2 -translate-y-1/2 rounded-md border border-slate-200 bg-white px-2 py-0.5 text-[10px] text-slate-400;
+    @apply absolute right-3 top-1/2 -translate-y-1/2 rounded-md border border-hairline bg-canvas px-2 py-0.5 text-[10px] text-muted-soft;
   }
 
   .admin-layout .admin-topbar-suggest {
-    @apply absolute left-0 right-0 top-full z-30 mt-2 rounded-xl border border-slate-200 bg-white p-1 shadow-lg;
+    @apply absolute left-0 right-0 top-full z-30 mt-2 rounded-xl border border-hairline bg-canvas p-1 shadow-lg;
   }
 
   .admin-layout .admin-topbar-suggest-section + .admin-topbar-suggest-section {
-    @apply mt-1 border-t border-slate-100 pt-1;
+    @apply mt-1 border-t border-hairline pt-1;
   }
 
   .admin-layout .admin-topbar-suggest-group {
-    @apply px-3 pt-2 pb-1 text-[11px] font-semibold text-slate-400;
+    @apply px-3 pt-2 pb-1 text-[11px] font-semibold text-muted-soft;
   }
 
   .admin-layout .admin-topbar-suggest-item {
-    @apply flex w-full flex-col items-start gap-1 rounded-lg px-3 py-2 text-left text-sm transition hover:bg-slate-100;
+    @apply flex w-full flex-col items-start gap-1 rounded-lg px-3 py-2 text-left text-sm transition hover:bg-surface-soft;
   }
 
   .admin-layout .admin-breadcrumbs {
-    @apply mb-4 flex items-center gap-2 text-xs text-slate-500;
+    @apply mb-4 flex items-center gap-2 text-xs text-muted-claude;
   }
 
   .admin-layout .admin-breadcrumbs a {
-    @apply text-slate-500 transition-colors hover:text-slate-700;
+    @apply text-muted-claude transition-colors hover:text-body;
   }
 
   .admin-layout .admin-page {
@@ -318,11 +317,11 @@ select:focus:not(:focus-visible),
   }
 
   .admin-layout .admin-page-title {
-    @apply text-2xl font-semibold text-slate-900;
+    @apply text-2xl font-semibold text-ink;
   }
 
   .admin-layout .admin-page-subtitle {
-    @apply text-sm text-slate-500;
+    @apply text-sm text-muted-claude;
   }
 
   .admin-layout .admin-page-actions {
@@ -330,15 +329,15 @@ select:focus:not(:focus-visible),
   }
 
   .admin-layout .admin-code {
-    @apply rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-600;
+    @apply rounded-full border border-hairline bg-surface-soft px-3 py-1 text-xs text-body;
   }
 
   .admin-layout .admin-link {
-    @apply inline-flex items-center gap-1 text-indigo-600 font-medium underline-offset-4 transition-colors hover:text-indigo-700 hover:underline;
+    @apply inline-flex items-center gap-1 text-coral font-medium underline-offset-4 transition-colors hover:text-coral-active hover:underline;
   }
 
   .admin-layout .admin-link:focus-visible {
-    @apply outline-none ring-2 ring-indigo-200 rounded-sm;
+    @apply outline-none ring-2 ring-coral/20 rounded-sm;
   }
 
   .admin-layout .admin-stat-grid {
@@ -346,27 +345,27 @@ select:focus:not(:focus-visible),
   }
 
   .admin-layout .admin-stat-scope {
-    @apply text-[10px] font-medium text-slate-400;
+    @apply text-[10px] font-medium text-muted-soft;
   }
 
   .admin-layout .admin-stat-scope--stamp {
-    @apply rounded-full border border-slate-200/70 bg-white/70 px-2 py-0.5 text-slate-400 backdrop-blur;
+    @apply rounded-full border border-hairline/70 bg-canvas/70 px-2 py-0.5 text-muted-soft backdrop-blur;
   }
 
   .admin-layout .admin-stat-card {
-    @apply relative flex items-center justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-transform duration-200 hover:-translate-y-0.5;
+    @apply relative flex items-center justify-between rounded-xl border border-hairline bg-canvas p-4 shadow-sm transition-transform duration-200 hover:-translate-y-0.5;
   }
 
   .admin-layout .admin-stat-icon {
-    @apply flex h-10 w-10 items-center justify-center rounded-full bg-indigo-50 text-indigo-600;
+    @apply flex h-10 w-10 items-center justify-center rounded-full bg-surface-card text-coral;
   }
 
   .admin-layout .admin-stat-label {
-    @apply text-xs text-slate-500;
+    @apply text-xs text-muted-claude;
   }
 
   .admin-layout .admin-stat-value {
-    @apply text-2xl font-semibold text-slate-900;
+    @apply text-2xl font-semibold text-ink;
   }
 
   .admin-layout .admin-stat-trend {
@@ -374,7 +373,7 @@ select:focus:not(:focus-visible),
   }
 
   .admin-layout .admin-sidebar {
-    @apply flex w-64 flex-col bg-gradient-to-b from-[#1a1f2e] to-[#252d3d] text-white/70 transition-[width] duration-200;
+    @apply flex w-64 flex-col bg-gradient-to-b from-surface-dark to-dark-elevated text-white/70 transition-[width] duration-200;
   }
 
   .admin-layout .admin-sidebar--collapsed {
@@ -386,7 +385,7 @@ select:focus:not(:focus-visible),
   }
 
   .admin-layout .admin-sidebar__logo {
-    @apply flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#4F46E5] to-[#7C3AED] text-sm font-semibold text-white;
+    @apply flex h-10 w-10 items-center justify-center rounded-xl bg-coral text-sm font-semibold text-white;
   }
 
   .admin-layout .admin-sidebar__title {
@@ -394,23 +393,23 @@ select:focus:not(:focus-visible),
   }
 
   .admin-layout .admin-sidebar__subtitle {
-    @apply text-xs text-white/60;
+    @apply text-xs text-on-dark-soft;
   }
 
   .admin-layout .admin-sidebar__user {
-    @apply mx-4 mb-4 flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-3 py-2;
+    @apply mx-4 mb-4 flex items-center gap-3 rounded-xl border border-on-dark/10 bg-on-dark/5 px-3 py-2;
   }
 
   .admin-layout .admin-sidebar__avatar {
-    @apply relative flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-xs font-semibold text-white;
+    @apply relative flex h-9 w-9 items-center justify-center rounded-full bg-on-dark/15 text-xs font-semibold text-white;
   }
 
   .admin-layout .admin-sidebar__avatar::after {
-    @apply absolute -right-0.5 -bottom-0.5 h-2.5 w-2.5 rounded-full border-2 border-[#252d3d] bg-emerald-400 content-[''];
+    @apply absolute -right-0.5 -bottom-0.5 h-2.5 w-2.5 rounded-full border-2 border-dark-elevated bg-emerald-400 content-[''];
   }
 
   .admin-layout .admin-sidebar__role {
-    @apply rounded-full bg-white/10 px-2 py-0.5 text-[10px] text-white/70;
+    @apply rounded-full bg-on-dark/10 px-2 py-0.5 text-[10px] text-white/70;
   }
 
   .admin-layout .admin-sidebar__group-title {
@@ -426,7 +425,7 @@ select:focus:not(:focus-visible),
   }
 
   .admin-layout .admin-sidebar__item--active {
-    @apply bg-indigo-500/20 text-white;
+    @apply bg-coral/15 text-white;
   }
 
   .admin-layout .admin-sidebar__item--group-active {
@@ -438,7 +437,7 @@ select:focus:not(:focus-visible),
   }
 
   .admin-layout .admin-sidebar__item-indicator.is-active {
-    @apply bg-indigo-400;
+    @apply bg-coral;
   }
 
   .admin-layout .admin-sidebar__item-indicator.is-group-active {
@@ -450,7 +449,7 @@ select:focus:not(:focus-visible),
   }
 
   .admin-layout .admin-sidebar__item--active .admin-sidebar__item-icon {
-    @apply text-indigo-300;
+    @apply text-coral;
   }
 
   .admin-layout .admin-sidebar__item--group-active .admin-sidebar__item-icon {
@@ -462,7 +461,7 @@ select:focus:not(:focus-visible),
   }
 
   .admin-layout .admin-sidebar__action {
-    @apply w-full justify-start border-white/15 bg-white/5 text-white/80 hover:bg-white/10;
+    @apply w-full justify-start border-on-dark/15 bg-on-dark/5 text-white/80 hover:bg-on-dark/10;
   }
 
   .admin-layout .admin-sidebar__logout {
@@ -470,23 +469,23 @@ select:focus:not(:focus-visible),
   }
 
   .admin-layout .admin-sidebar__collapse {
-    @apply mt-3 flex w-full items-center justify-center gap-2 rounded-lg border border-white/10 py-2 text-xs text-white/60 transition hover:bg-white/10;
+    @apply mt-3 flex w-full items-center justify-center gap-2 rounded-lg border border-on-dark/10 py-2 text-xs text-on-dark-soft transition hover:bg-on-dark/10;
   }
 
   .admin-layout .ui-card {
-    @apply rounded-xl border border-slate-200 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.08)];
+    @apply rounded-xl border border-hairline bg-canvas shadow-[0_1px_3px_rgba(15,23,42,0.08)];
   }
 
   .admin-layout .ui-card-header {
-    @apply border-b border-slate-100 px-6 pt-5 pb-4;
+    @apply border-b border-hairline px-6 pt-5 pb-4;
   }
 
   .admin-layout .ui-card-title {
-    @apply text-base font-semibold text-slate-900;
+    @apply text-base font-semibold text-ink;
   }
 
   .admin-layout .ui-card-description {
-    @apply text-sm text-slate-500;
+    @apply text-sm text-muted-claude;
   }
 
   .admin-layout .ui-card-content {
@@ -494,7 +493,7 @@ select:focus:not(:focus-visible),
   }
 
   .admin-layout .ui-table-wrap {
-    @apply rounded-xl border border-slate-200 bg-white overflow-x-auto;
+    @apply rounded-xl border border-hairline bg-canvas overflow-x-auto;
   }
 
   .admin-layout .ui-card .ui-table-wrap {
@@ -502,23 +501,23 @@ select:focus:not(:focus-visible),
   }
 
   .admin-layout .ui-table {
-    @apply text-[13px] text-slate-700 border-collapse;
+    @apply text-[13px] text-body border-collapse;
   }
 
   .admin-layout .ui-table-header {
-    @apply bg-[#F9FAFB];
+    @apply bg-surface-soft;
   }
 
   .admin-layout .ui-table-body tr:nth-child(even) {
-    @apply bg-slate-50/40;
+    @apply bg-surface-soft/40;
   }
 
   .admin-layout .ui-table-row {
-    @apply border-b border-slate-100 hover:bg-[#F9FAFB];
+    @apply border-b border-hairline hover:bg-surface-soft;
   }
 
   .admin-layout .ui-table-head {
-    @apply h-14 px-4 text-xs font-semibold text-slate-500;
+    @apply h-14 px-4 text-xs font-semibold text-muted-claude;
   }
 
   .admin-layout .ui-table-cell {
@@ -536,17 +535,17 @@ select:focus:not(:focus-visible),
   }
 
   .admin-layout .ui-table-caption {
-    @apply text-slate-500;
+    @apply text-muted-claude;
   }
 
   .admin-layout .ui-input,
   .admin-layout .ui-textarea,
   .admin-layout .ui-select-trigger {
-    @apply rounded-lg border-slate-200 bg-white shadow-none;
+    @apply rounded-lg border-hairline bg-canvas shadow-none;
   }
 
   .admin-layout .ui-select-content {
-    @apply rounded-xl border-slate-200 bg-white text-slate-700 shadow-lg;
+    @apply rounded-xl border-hairline bg-canvas text-body shadow-lg;
   }
 
   .admin-layout .ui-select-item {
@@ -2096,7 +2095,7 @@ textarea {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #999999;
+  color: #6c6a64;
   font-size: 13px;
 }
 
@@ -2111,7 +2110,7 @@ textarea {
   width: 6px;
   height: 6px;
   border-radius: 999px;
-  background: #cccccc;
+  background: #8e8b82;
   animation: ai-wait-bounce 1.2s ease-in-out infinite;
 }
 
@@ -2212,8 +2211,8 @@ textarea {
 }
 
 .user-message {
-  background: #f5f5f5;
-  color: #333333;
+  background: #efe9de;
+  color: #141413;
   padding: 10px 16px;
   border-radius: 16px 16px 4px 16px;
   max-width: 80%;
