@@ -250,6 +250,68 @@ rag:
     # type: milvus  # 🔮 使用 Milvus
 ```
 
+### 🤖 AI 模型配置
+
+项目统一使用**阿里云百炼**作为 AI 服务提供商，通过单一 API KEY 即可驱动全部 AI 能力：
+
+| 能力 | 模型 | 说明 |
+|:---:|:---|:---|
+| 💬 **Chat** | qwen-plus / qwen3-max | 对话生成，支持深度思考 |
+| 📐 **Embedding** | text-embedding-v3 | 文本向量化 |
+| 🔄 **Rerank** | qwen3-rerank | 检索结果重排序 |
+
+**配置环境变量**：
+
+```bash
+export BAILIAN_API_KEY=your_api_key_here
+```
+
+**模型配置示例**（`application.yaml`）：
+
+```yaml
+ai:
+  providers:
+    bailian:
+      url: https://dashscope.aliyuncs.com
+      api-key: ${BAILIAN_API_KEY}
+      endpoints:
+        chat: /compatible-mode/v1/chat/completions
+        embedding: /compatible-mode/v1/embeddings
+        rerank: /api/v1/services/rerank/text-rerank/text-rerank
+
+  chat:
+    default-model: qwen3-max
+    candidates:
+      - id: qwen-plus
+        provider: bailian
+        model: qwen-plus-latest
+        priority: 1
+      - id: qwen3-max
+        provider: bailian
+        model: qwen3-max
+        supports-thinking: true
+        priority: 3
+
+  embedding:
+    default-model: text-embedding-v3
+    candidates:
+      - id: text-embedding-v3
+        provider: bailian
+        model: text-embedding-v3
+        dimension: 1536
+        priority: 1
+
+  rerank:
+    default-model: qwen3-rerank
+    candidates:
+      - id: qwen3-rerank
+        provider: bailian
+        model: qwen3-rerank
+        priority: 1
+```
+
+> 💡 **扩展说明**：如需接入其他兼容 OpenAI 协议的模型服务（如 DeepSeek、MIMO 等），只需新增 `ChatClient` 实现类并添加对应的 provider 配置即可，无需修改框架代码。
+
 ---
 
 ## 🧩 扩展开发
@@ -284,7 +346,7 @@ rag:
   <tr>
     <td width="50%">
       <h4>🤖 模型供应商</h4>
-      <code>ChatClient</code> 接口<br/>
+      <code>ChatClient</code> / <code>EmbeddingClient</code> / <code>RerankClient</code> 接口<br/>
       接入新的 AI 模型
     </td>
     <td width="50%">
