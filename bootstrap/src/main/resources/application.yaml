@@ -124,29 +124,20 @@ ai:
     message-chunk-size: 1
 
   chat:
-    default-model: qwen3-max
-    deep-thinking-model: qwen3-max
+    default-model: deepseek-v4-flash
+    deep-thinking-model: deepseek-v4-flash
     candidates:
-      - id: qwen-plus
+      - id: deepseek-v4-flash
         provider: bailian
-        model: qwen-plus-latest
+        model: deepseek-v4-flash
         priority: 1
-      - id: qwen3-max
-        provider: bailian
-        model: qwen3-max
-        supports-thinking: true
-        priority: 3
-      - id: qwen3-local
-        provider: ollama
-        model: qwen3:8b-fp16
-        priority: 2
 
   embedding:
-    default-model: text-embedding-v3
+    default-model: text-embedding-v4
     candidates:
-      - id: text-embedding-v3
+      - id: text-embedding-v4
         provider: bailian
-        model: text-embedding-v3
+        model: text-embedding-v4
         dimension: ${rag.default.dimension}
         priority: 1
 

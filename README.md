@@ -256,8 +256,8 @@ rag:
 
 | 能力 | 模型 | 说明 |
 |:---:|:---|:---|
-| 💬 **Chat** | qwen-plus / qwen3-max | 对话生成，支持深度思考 |
-| 📐 **Embedding** | text-embedding-v3 | 文本向量化 |
+| 💬 **Chat** | deepseek-v4-flash | DeepSeek 高速对话模型（百炼托管） |
+| 📐 **Embedding** | text-embedding-v4 | 文本向量化，最新版本 |
 | 🔄 **Rerank** | qwen3-rerank | 检索结果重排序 |
 
 **配置环境变量**：
@@ -280,24 +280,19 @@ ai:
         rerank: /api/v1/services/rerank/text-rerank/text-rerank
 
   chat:
-    default-model: qwen3-max
+    default-model: deepseek-v4-flash
     candidates:
-      - id: qwen-plus
+      - id: deepseek-v4-flash
         provider: bailian
-        model: qwen-plus-latest
+        model: deepseek-v4-flash
         priority: 1
-      - id: qwen3-max
-        provider: bailian
-        model: qwen3-max
-        supports-thinking: true
-        priority: 3
 
   embedding:
-    default-model: text-embedding-v3
+    default-model: text-embedding-v4
     candidates:
-      - id: text-embedding-v3
+      - id: text-embedding-v4
         provider: bailian
-        model: text-embedding-v3
+        model: text-embedding-v4
         dimension: 1536
         priority: 1
 
