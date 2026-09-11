@@ -652,16 +652,12 @@ rag:
 ```
 LLMService (Facade)
   └── RoutingLLMService (路由)
-       ├── SiliconFlowChatClient    (OpenAI 兼容 API)
-       ├── OllamaChatClient          (本地 Ollama)
-       ├── BaiLianChatClient         (阿里百炼)
-       └── AIHubMixChatClient        (AIHubMix)
+       ├── SiliconFlowChatClient    (硅基流动，OpenAI 兼容 API)
+       └── BaiLianChatClient        (阿里云百炼)
 
 EmbeddingService (Facade)
   └── RoutingEmbeddingService (路由)
-       ├── SiliconFlowEmbeddingClient
-       ├── OllamaEmbeddingClient
-       └── AIHubMixEmbeddingClient
+       └── SiliconFlowEmbeddingClient
 
 RerankService (Facade)
   └── RoutingRerankService (路由)

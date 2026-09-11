@@ -24,7 +24,7 @@ import java.util.List;
  * <p>
  * 用途说明：
  * - 提供文本向量化能力，是 RAG 系统的核心基础组件
- * - 封装底层 Embedding 模型的调用逻辑（如 Ollama、DeepSeek、Qwen、本地推理服务等）
+ * - 封装硅基流动 Embedding 模型的调用逻辑
  * - 对外提供统一的向量生成接口，屏蔽具体模型差异
  * <p>
  * 使用场景：

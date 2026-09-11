@@ -28,11 +28,9 @@ import java.util.List;
  * 用途说明：
  * - 为业务层提供统一的大模型访问能力，屏蔽不同厂商/协议的差异
  * - 支持同步调用（一次性返回完整回答）与流式调用（按 token/片段增量输出）
- * - 可通过不同实现类适配各模型平台，如：
- * - 本地推理（Ollama、LM Studio 等）
+ * - 当前通过不同实现类接入以下模型平台：
  * - 阿里云百炼（DashScope）
- * - DeepSeek / OpenAI / Qwen API
- * - 企业内部推理服务
+ * - 硅基流动（SiliconFlow）
  * <p>
  * 核心能力：
  * - 标准化 Prompt 构造（system / user / context）
