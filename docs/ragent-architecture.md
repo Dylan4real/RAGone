@@ -662,6 +662,7 @@ EmbeddingService (Facade)
 RerankService (Facade)
   └── RoutingRerankService (路由)
        ├── BaiLianRerankClient
+       ├── SiliconFlowRerankClient
        └── NoopRerankClient
 ```
 

@@ -17,6 +17,7 @@
 
 package com.nageoffer.ai.ragent.infra.chat;
 
+import com.google.gson.JsonObject;
 import com.nageoffer.ai.ragent.framework.convention.ChatRequest;
 import com.nageoffer.ai.ragent.framework.trace.RagTraceNode;
 import com.nageoffer.ai.ragent.infra.enums.ModelProvider;
@@ -31,6 +32,12 @@ public class SiliconFlowChatClient extends AbstractOpenAIStyleChatClient {
     @Override
     public String provider() {
         return ModelProvider.SILICON_FLOW.getId();
+    }
+
+    @Override
+    protected void customizeRequestBody(JsonObject body, ChatRequest request) {
+        // 显式传递开关，避免普通对话受模型默认思考模式影响。
+        body.addProperty("enable_thinking", Boolean.TRUE.equals(request.getThinking()));
     }
 
     @Override
