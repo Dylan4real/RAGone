@@ -128,7 +128,8 @@ public class StreamChatEventHandler implements StreamCallback {
         if (taskManager.isCancelled(taskId)) {
             return;
         }
-        if (StrUtil.isBlank(chunk)) {
+        // 仅丢弃 null 与空串，保留纯空白增量（换行、空格），否则 Markdown 结构会被破坏
+        if (StrUtil.isEmpty(chunk)) {
             return;
         }
         if (thinkingStartMs > 0 && thinkingDurationSeconds == 0) {
@@ -143,7 +144,8 @@ public class StreamChatEventHandler implements StreamCallback {
         if (taskManager.isCancelled(taskId)) {
             return;
         }
-        if (StrUtil.isBlank(chunk)) {
+        // 与 onContent 保持一致：保留纯空白增量，避免思维链文本换行丢失
+        if (StrUtil.isEmpty(chunk)) {
             return;
         }
         if (thinkingStartMs == 0) {

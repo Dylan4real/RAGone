@@ -115,7 +115,7 @@ ai:
         rerank: /api/v1/services/rerank/text-rerank/text-rerank
     siliconflow:
       url: https://api.siliconflow.cn
-      api-key: ${SILICONFLOW_API_KEY:sk-udiioswtmujqdipghexesanorkaljdtancgpujumqqfnweoo}
+      api-key: ${SILICONFLOW_API_KEY}
       endpoints:
         chat: /v1/chat/completions
         embedding: /v1/embeddings
