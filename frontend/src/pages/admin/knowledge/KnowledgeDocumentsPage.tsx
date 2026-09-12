@@ -174,7 +174,7 @@ const renderFileTypeIcon = (fileType?: string | null, sourceType?: string | null
     return <Icon className={`h-4 w-4 shrink-0 ${color}`} />;
   }
   if (sourceType?.toLowerCase() === "url") {
-    return <LinkIcon className="h-4 w-4 shrink-0 text-purple-500" />;
+    return <LinkIcon className="h-4 w-4 shrink-0 text-[#3B82F6]" />;
   }
   return <FileText className="h-4 w-4 shrink-0 text-slate-400" />;
 };
@@ -666,7 +666,7 @@ export function KnowledgeDocumentsPage() {
                           <div className="flex items-center gap-1.5 min-w-0">
                             <button
                               type="button"
-                              className="block truncate min-w-0 text-left font-medium text-slate-900 transition-colors hover:text-indigo-600 hover:underline underline-offset-4"
+                              className="block truncate min-w-0 text-left font-medium text-slate-900 transition-colors hover:text-[#2563EB] hover:underline underline-offset-4"
                               title={doc.docName || ""}
                               onClick={() => navigate(`/admin/knowledge/${kbId}/docs/${doc.id}`)}
                             >

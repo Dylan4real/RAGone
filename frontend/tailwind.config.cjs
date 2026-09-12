@@ -33,9 +33,9 @@ module.exports = {
         mono: ["'JetBrains Mono'", "ui-monospace", "SFMono-Regular"]
       },
       boxShadow: {
-        soft: "0 24px 60px -30px rgba(10, 10, 15, 0.65)",
-        glow: "0 0 0 1px rgba(59, 130, 246, 0.2), 0 16px 40px rgba(59, 130, 246, 0.25)",
-        neon: "0 0 30px rgba(59, 130, 246, 0.35)"
+        soft: "0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px -12px rgba(0, 0, 0, 0.08)",
+        glow: "0 0 0 1px rgba(59, 130, 246, 0.18)",
+        neon: "0 0 0 1px rgba(59, 130, 246, 0.18)"
       },
       keyframes: {
         "fade-up": {

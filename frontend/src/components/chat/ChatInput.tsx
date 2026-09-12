@@ -62,10 +62,8 @@ export function ChatInput() {
     <div className="space-y-4">
       <div
         className={cn(
-          "relative flex flex-col rounded-2xl border bg-white px-4 pt-3 pb-2 transition-all duration-200",
-          isFocused
-            ? "border-[#D4D4D4] shadow-[0_4px_12px_rgba(0,0,0,0.06)]"
-            : "border-[#E5E5E5] hover:border-[#D4D4D4]"
+          "relative flex flex-col rounded-2xl border bg-white px-4 pt-3 pb-2 transition-colors duration-200",
+          isFocused ? "border-[#BFDBFE]" : "border-[#E5E5E5] hover:border-[#D4D4D4]"
         )}
       >
         <div className="relative">
@@ -74,7 +72,7 @@ export function ChatInput() {
             value={value}
             onChange={(event) => setValue(event.target.value)}
             placeholder={deepThinkingEnabled ? "输入需要深度分析的问题..." : "输入你的问题..."}
-            className="max-h-40 min-h-[44px] w-full resize-none border-0 bg-transparent px-2 pt-2 pb-2 pr-2 text-[15px] text-[#333333] shadow-none placeholder:text-[#999999] focus-visible:ring-0"
+            className="max-h-40 min-h-[44px] w-full resize-none border-0 bg-transparent px-2 pt-2 pb-2 pr-2 text-[15px] text-[#0D0D0D] shadow-none placeholder:text-[#8F8F8F] focus-visible:ring-0"
             rows={1}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
@@ -96,7 +94,6 @@ export function ChatInput() {
             }}
             aria-label="聊天输入框"
           />
-          <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[10px] bg-gradient-to-b from-white/0 via-white/40 to-white/90" />
         </div>
         <div className="relative mt-2 flex items-center">
           <button
@@ -105,10 +102,10 @@ export function ChatInput() {
             disabled={isStreaming}
             aria-pressed={deepThinkingEnabled}
             className={cn(
-              "absolute left-0 rounded-lg border px-3 py-1.5 text-xs font-medium transition-all",
+              "absolute left-0 rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors",
               deepThinkingEnabled
-                ? "border-[#BFDBFE] bg-[#DBEAFE] text-[#2563EB]"
-                : "border-transparent bg-[#F5F5F5] text-[#999999] hover:bg-[#EEEEEE]",
+                ? "border-[#BFDBFE] bg-[#EFF6FF] text-[#2563EB]"
+                : "border-transparent bg-[#F5F5F5] text-[#5D5D5D] hover:bg-[#ECECEC]",
               isStreaming && "cursor-not-allowed opacity-60"
             )}
           >
@@ -126,12 +123,12 @@ export function ChatInput() {
             disabled={!hasContent && !isStreaming}
             aria-label={isStreaming ? "停止生成" : "发送消息"}
             className={cn(
-              "ml-auto rounded-full p-2.5 transition-all duration-200",
+              "ml-auto rounded-full p-2.5 transition-colors duration-200",
               isStreaming
                 ? "bg-[#FEE2E2] text-[#EF4444] hover:bg-[#FECACA]"
                 : hasContent
                   ? "bg-[#3B82F6] text-white hover:bg-[#2563EB]"
-                  : "cursor-not-allowed bg-[#F5F5F5] text-[#CCCCCC]"
+                  : "cursor-not-allowed bg-[#F5F5F5] text-[#B4B4B4]"
             )}
           >
             {isStreaming ? <Square className="h-4 w-4" /> : <Send className="h-4 w-4" />}
@@ -146,10 +143,10 @@ export function ChatInput() {
           </span>
         </p>
       ) : null}
-      <p className="text-center text-xs text-[#999999]">
-        <kbd className="rounded bg-[#F5F5F5] px-1.5 py-0.5 text-[#666666]">Enter</kbd> 发送
+      <p className="text-center text-xs text-[#8F8F8F]">
+        <kbd className="rounded border border-[#E5E5E5] bg-white px-1.5 py-0.5 text-[#5D5D5D]">Enter</kbd> 发送
         <span className="px-1.5">·</span>
-        <kbd className="rounded bg-[#F5F5F5] px-1.5 py-0.5 text-[#666666]">
+        <kbd className="rounded border border-[#E5E5E5] bg-white px-1.5 py-0.5 text-[#5D5D5D]">
           Shift + Enter
         </kbd>{" "}
         换行

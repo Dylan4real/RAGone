@@ -489,8 +489,8 @@ const KPISection = ({ overview }: { overview: DashboardOverview | null }) => {
       label: "会话数",
       change: toChange(kpis?.sessions24h.deltaPct),
       icon: <MessageSquare className="h-5 w-5" />,
-      iconBg: "#E0E7FF",
-      iconColor: "#4F46E5"
+      iconBg: "#CCFBF1",
+      iconColor: "#0D9488"
     },
     {
       value: formatNumber(kpis?.messages24h.value),

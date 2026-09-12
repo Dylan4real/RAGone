@@ -440,8 +440,8 @@ export function AdminLayout() {
             <div className="admin-sidebar__logo">R</div>
             {!collapsed && (
               <div className="min-w-0">
-                <h1 className="admin-sidebar__title">RAGone AI 管理后台</h1>
-                <p className="admin-sidebar__subtitle">Knowledge Console</p>
+                <h1 className="admin-sidebar__title">RAGone 管理后台</h1>
+                <p className="admin-sidebar__subtitle">管理控制台</p>
               </div>
             )}
           </div>
@@ -519,8 +519,8 @@ export function AdminLayout() {
                             type="button"
                             onClick={() => setOpenGroups((prev) => ({ ...prev, [groupId]: !prev[groupId] }))}
                             className={cn(
-                              "admin-sidebar__item admin-sidebar__item--group w-full text-white/60",
-                              isGroupActive && "admin-sidebar__item--group-active text-white"
+                              "admin-sidebar__item admin-sidebar__item--group w-full text-[#8F8F8F]",
+                              isGroupActive && "admin-sidebar__item--group-active text-[#0D0D0D]"
                             )}
                           >
                             <span
@@ -532,9 +532,9 @@ export function AdminLayout() {
                         <item.icon className="admin-sidebar__item-icon" />
                         <span className="flex-1 text-left">{item.label}</span>
                         {isOpen ? (
-                          <ChevronDown className="h-4 w-4 text-white/60" />
+                          <ChevronDown className="h-4 w-4 text-[#8F8F8F]" />
                         ) : (
-                          <ChevronRight className="h-4 w-4 text-white/60" />
+                          <ChevronRight className="h-4 w-4 text-[#8F8F8F]" />
                         )}
                       </button>
                       {isOpen ? (
@@ -711,7 +711,7 @@ export function AdminLayout() {
                     <Avatar
                       name={user?.username || "管理员"}
                       src={showAvatar ? avatarUrl : undefined}
-                      className="h-8 w-8 border-slate-200 bg-indigo-50 text-xs font-semibold text-indigo-600"
+                      className="h-8 w-8 border-[#ECECEC] bg-[#EFF6FF] text-xs font-semibold text-[#2563EB]"
                     />
                     <span className="hidden sm:inline">{user?.username || "管理员"}</span>
                     <ChevronDown className="h-4 w-4 text-slate-400" />

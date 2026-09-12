@@ -212,10 +212,10 @@ export function KnowledgeListPage() {
   const getCollectionBadgeClass = (name?: string) => {
     const value = (name || "").toLowerCase();
     if (value.includes("biz")) {
-      return "border-blue-200 bg-blue-50 text-blue-700";
+      return "border-[#BFDBFE] bg-[#EFF6FF] text-[#1D4ED8]";
     }
     if (value.includes("group")) {
-      return "border-purple-200 bg-purple-50 text-purple-700";
+      return "border-[#D4D4D4] bg-[#F5F5F5] text-[#333333]";
     }
     return "border-slate-200 bg-slate-100 text-slate-600";
   };

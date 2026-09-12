@@ -34,14 +34,18 @@ export function LoginPage() {
   };
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center px-4">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/50 to-blue-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-900" />
-      <div className="relative z-10 w-full max-w-md rounded-3xl border border-border/70 bg-background/80 p-8 shadow-soft backdrop-blur">
+    <div className="relative flex min-h-screen items-center justify-center bg-[#F9F9F9] px-4">
+      <div className="relative z-10 w-full max-w-md rounded-3xl border border-[#E5E5E5] bg-white p-8">
         <div className="mb-6">
-          <p className="font-display text-2xl font-semibold">欢迎回来</p>
-          <p className="mt-1 text-sm text-muted-foreground">
-            登录后继续你的检索增强对话。
-          </p>
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#3B82F6] text-sm font-semibold text-white">
+              R
+            </div>
+            <div>
+              <p className="font-display text-xl font-semibold text-[#0D0D0D]">RAGone</p>
+              <p className="text-sm text-[#8F8F8F]">登录后继续你的检索增强对话</p>
+            </div>
+          </div>
         </div>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="space-y-2">

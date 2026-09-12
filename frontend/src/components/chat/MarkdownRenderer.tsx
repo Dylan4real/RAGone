@@ -82,7 +82,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
 
           if (hasError) {
             return (
-              <div className="my-3 flex items-center gap-2 text-sm text-[#999999]">
+              <div className="my-3 flex items-center gap-2 text-sm text-[#8F8F8F]">
                 <ImageIcon className="h-4 w-4" />
                 <span>图片加载失败</span>
               </div>
@@ -229,7 +229,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
           return <hr className="my-6 border-0 border-t border-[#d0d7de] dark:border-[#30363d]" {...props} />;
         }
       }}
-      className="prose prose-gray max-w-none break-words leading-[1.6] dark:prose-invert prose-headings:text-[#1A1A1A] dark:prose-headings:text-[#EEEEEE] prose-p:text-[#333333] dark:prose-p:text-[#CCCCCC] prose-p:leading-relaxed prose-li:text-[#333333] dark:prose-li:text-[#CCCCCC] prose-strong:text-[#1A1A1A] dark:prose-strong:text-[#EEEEEE]"
+      className="prose prose-gray max-w-none break-words leading-[1.75] dark:prose-invert prose-headings:text-[#0D0D0D] dark:prose-headings:text-[#EEEEEE] prose-p:text-[#0D0D0D] dark:prose-p:text-[#CCCCCC] prose-p:leading-relaxed prose-li:text-[#0D0D0D] dark:prose-li:text-[#CCCCCC] prose-strong:text-[#0D0D0D] dark:prose-strong:text-[#EEEEEE]"
     >
       {content}
     </ReactMarkdown>

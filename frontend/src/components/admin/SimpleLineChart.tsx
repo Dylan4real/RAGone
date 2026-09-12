@@ -45,7 +45,7 @@ interface SimpleLineChartProps {
 const FALLBACK_TONES: ChartTone[] = ["primary", "success", "warning", "danger", "info", "neutral"];
 
 const CHART_COLOR_VARS: CSSProperties = {
-  ["--chart-primary" as string]: "#8b5cf6",
+  ["--chart-primary" as string]: "#3b82f6",
   ["--chart-success" as string]: "#22c55e",
   ["--chart-warning" as string]: "#f59e0b",
   ["--chart-danger" as string]: "#ef4444",
@@ -239,7 +239,7 @@ const buildAreaPath = (points: PlotPoint[], baselineY: number) => {
 const getThresholdToneColor = (tone?: ChartThreshold["tone"]) => {
   if (tone === "critical") return "#ef4444";
   if (tone === "warning") return "#f59e0b";
-  return "#0ea5e9";
+  return "#3b82f6";
 };
 
 const buildYAxisTicks = (

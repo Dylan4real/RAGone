@@ -156,7 +156,7 @@ function WaterfallRow({
           className={cn(
               "grid grid-cols-[minmax(180px,1fr)_120px_2fr_100px] gap-4 px-4 py-2.5 transition-colors group",
               clickable && "cursor-pointer hover:bg-slate-50/80",
-              isRoot && "bg-indigo-50/40 border-b border-indigo-100",
+              isRoot && "bg-[#F5F9FF] border-b border-[#BFDBFE]",
               isTopSlowest && !isSelected && !isRoot && "bg-amber-50/40",
               isSelected && "bg-blue-50/60 ring-1 ring-inset ring-blue-200"
           )}
@@ -187,7 +187,7 @@ function WaterfallRow({
           <span
               className={cn(
                   "truncate",
-                  isRoot ? "text-sm font-semibold text-indigo-900" : "text-sm text-slate-700"
+                  isRoot ? "text-sm font-semibold text-[#1D4ED8]" : "text-sm text-slate-700"
               )}
               title={nodeDisplayName}
           >
