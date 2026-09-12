@@ -58,6 +58,7 @@ public class FixedSizeTextChunker implements ChunkingStrategy {
 
         FixedSizeOptions opts = (FixedSizeOptions) config;
         int configuredChunkSize = opts.chunkSize();
+        // chunkSize == -1 表示不切分，整段文本作为一个 chunk 直接返回
         if (configuredChunkSize == -1) {
             return List.of(VectorChunk.builder()
                     .chunkId(IdUtil.getSnowflakeNextIdStr())
@@ -66,9 +67,11 @@ public class FixedSizeTextChunker implements ChunkingStrategy {
                     .build());
         }
 
+        // 将 chunkSize 和 overlap 约束到合法范围
         int chunkSize = Math.max(1, configuredChunkSize);
         int overlap = Math.max(0, opts.overlapSize());
 
+        // overlap 不能超过 chunkSize-1，否则会导致 chunk 完全重复或死循环
         if (chunkSize > 1) {
             overlap = Math.min(overlap, chunkSize - 1);
         } else {
@@ -83,14 +86,17 @@ public class FixedSizeTextChunker implements ChunkingStrategy {
         int lastEnd = -1;
 
         while (start < len) {
+            // 目标结束位置：不超过文本末尾
             int targetEnd = Math.min(start + chunkSize, len);
+            // 在目标位置附近向前回退，寻找语义边界
             int end = adjustToBoundary(normalized, start, targetEnd, overlap);
 
-            // 强制推进，避免回退过头导致重复/停滞
+            // 强制推进保护：若回退导致停滞或倒退，直接使用 targetEnd 硬切
             if (end <= start || end <= lastEnd) {
                 end = targetEnd;
             }
 
+            // 跳过纯空白 chunk，不加入结果
             String content = normalized.substring(start, end);
             if (StringUtils.hasText(content.strip())) {
                 chunks.add(VectorChunk.builder()
@@ -103,7 +109,9 @@ public class FixedSizeTextChunker implements ChunkingStrategy {
             lastEnd = end;
             if (end >= len) break;
 
+            // 下一个 chunk 的起始位置 = 当前 end 回退 overlap 长度，实现相邻 chunk 重叠
             int nextStart = Math.max(0, end - overlap);
+            // 安全兜底：若回退后仍 <= start（overlap=0 等场景），直接从 end 开始
             if (nextStart <= start) nextStart = end;
             start = nextStart;
         }
@@ -254,6 +262,9 @@ public class FixedSizeTextChunker implements ChunkingStrategy {
         return false;
     }
 
+    /**
+     * 判断从指定位置开始是否呈现有序列表项开头（如 "1." "2）" "10)"）
+     */
     private boolean isListItemStart(String s, int i) {
         // 跳过可能存在的空格/制表符（一般是新行后的缩进）
         int p = i;
@@ -270,11 +281,17 @@ public class FixedSizeTextChunker implements ChunkingStrategy {
         return false;
     }
 
+    /**
+     * 判断指定位置是否以 http:// 或 https:// 开头
+     */
     private boolean looksLikeUrlStart(String s, int i) {
         if (i < 0 || i >= s.length()) return false;
         return s.startsWith("http://", i) || s.startsWith("https://", i);
     }
 
+    /**
+     * 判断字符是否为合法的 URL 组成字符（字母、数字及 RFC 3986 保留/非保留字符）
+     */
     private boolean isUrlChar(char c) {
         if (c >= 'a' && c <= 'z') return true;
         if (c >= 'A' && c <= 'Z') return true;
@@ -288,10 +305,16 @@ public class FixedSizeTextChunker implements ChunkingStrategy {
                 || c == ',' || c == ';' || c == '=' || c == '%';
     }
 
+    /**
+     * 判断字符是否为 URL 中常见的结构标点（路径/查询/片段分隔符等）
+     */
     private boolean isCommonUrlPunct(char c) {
         return c == '.' || c == '/' || c == '?' || c == '&' || c == '=' || c == '-' || c == '_' || c == '%';
     }
 
+    /**
+     * 判断字符是否为 CJK 表意文字（非标点、非空白），用于检测中文词间软换行
+     */
     private boolean isCjkWordChar(char c) {
         if (c == 0) return false;
         if (Character.isWhitespace(c)) return false;
@@ -299,6 +322,9 @@ public class FixedSizeTextChunker implements ChunkingStrategy {
         return !isCjkPunctuation(c);
     }
 
+    /**
+     * 判断字符是否属于 CJK 统一汉字/扩展/全角字母数字的 Unicode 区块
+     */
     private boolean isCjkOrFullWidthLetterOrDigit(char c) {
         if (c == 0) return false;
         Character.UnicodeBlock block = Character.UnicodeBlock.of(c);
@@ -309,6 +335,9 @@ public class FixedSizeTextChunker implements ChunkingStrategy {
                 || block == Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS;
     }
 
+    /**
+     * 判断字符是否为 CJK 标点符号（含全角标点及通用标点）
+     */
     private boolean isCjkPunctuation(char c) {
         Character.UnicodeBlock block = Character.UnicodeBlock.of(c);
         return block == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION

@@ -48,13 +48,25 @@ public class StructureAwareTextChunker implements ChunkingStrategy {
     private static final Pattern ATOMIC_IMAGE = Pattern.compile("^!\\[[^]]*]\\([^)]+\\)(?:\\s*\"[^\"]*\")?\\s*$");
     private static final Pattern ATOMIC_LINK = Pattern.compile("^\\[[^]]+]\\([^)]+\\)\\s*$");
 
+    /**
+     * 该分块器对应的策略枚举，供 ChunkingStrategyFactory 注册/查找
+     */
     @Override
     public ChunkingMode getType() {
         return ChunkingMode.STRUCTURE_AWARE;
     }
 
+    /**
+     * 结构感知分块主入口：先把文本切成结构块，再按 min/target/max 预算打包，最后物化为 chunk
+     * 全流程只在“块”边界切分，输出内容均为原文字面量子串
+     *
+     * @param text   待分块的原始文本（通常为 Markdown）
+     * @param config 必须是 {@link TextBoundaryOptions}
+     * @return 分块结果，index 从 0 连续递增
+     */
     @Override
     public List<VectorChunk> chunk(String text, ChunkingOptions config) {
+        // 空文本直接返回空列表，避免后续 subString 越界
         if (StrUtil.isBlank(text)) return List.of();
 
         // 统一行尾：Windows \r\n → \n，老 Mac \r → \n，避免 \r 残留导致空行/标题识别失败
@@ -69,13 +81,14 @@ public class StructureAwareTextChunker implements ChunkingStrategy {
         // 1) 扫描成“块”（记录原文的 start/end 下标，确保输出 substring 完全等于原文）
         List<Block> blocks = segmentToBlocks(text);
 
+        // 极端兜底：识别不出任何结构块（例如纯空白/无换行的单行文本）时，整段作为一个 chunk 返回
         if (blocks.isEmpty()) {
             VectorChunk chunk = VectorChunk.builder()
                     .content(text)
                     .index(0)
                     .chunkId(IdUtil.getSnowflakeNextIdStr())
                     .build();
-            return List.of(chunk); // 极端兜底：整体作为一个块
+            return List.of(chunk);
         }
 
         // 2) 依据 min/target/max 打包成 chunk（只在块边界切分）
@@ -84,7 +97,7 @@ public class StructureAwareTextChunker implements ChunkingStrategy {
         // 3)（可选）加入重叠：为保持“只在块边界切分”，这里不在中间加重叠，若开启 overlap，仅复制“上一 chunk 的尾部全文子串”到下一 chunk 的开头
         List<VectorChunk> out = materialize(text, ranges, effectiveOverlap);
 
-        // 编号从 0 递增
+        // 4) 最终归一化：按列表顺序重写 index 并重新生成 chunkId，保证对外 index 一定从 0 连续递增
         for (int i = 0; i < out.size(); i++) {
             VectorChunk chunk = VectorChunk.builder()
                     .content(out.get(i).getContent())
@@ -109,6 +122,14 @@ public class StructureAwareTextChunker implements ChunkingStrategy {
     }
 
     // ----------- 1) 线性扫描生成块 -----------
+
+    /**
+     * 逐行线性扫描原文，切分成 Heading / Paragraph / CodeFence / Atomic（整行图片/链接）四类块
+     * 只记录每个块在原文中的 start/end 下标，不改写任何字符，保证后续 substring 与原文一致
+     *
+     * @param text 已统一行尾的原文
+     * @return 按出现顺序排列的块列表
+     */
     private List<Block> segmentToBlocks(String text) {
         List<Block> blocks = new ArrayList<>();
         int n = text.length();
@@ -201,7 +222,14 @@ public class StructureAwareTextChunker implements ChunkingStrategy {
         return coalesceTrailingBlanks(blocks, text);
     }
 
-    // 合并“块尾部的若干空行”到块内部，避免单独产生空白块（保持原文不变，只是归属到前块）
+    /**
+     * 把相邻块之间的纯空白并入前一块的区间，避免产生独立的空白块
+     * 保持原文不变，只是把空白的“归属”划给前块
+     *
+     * @param blocks 原始块列表
+     * @param text   原文（用于判断区间是否全为空白）
+     * @return 合并空白后的块列表
+     */
     private List<Block> coalesceTrailingBlanks(List<Block> blocks, String text) {
         if (blocks.isEmpty()) return blocks;
         List<Block> out = new ArrayList<>();
@@ -221,6 +249,19 @@ public class StructureAwareTextChunker implements ChunkingStrategy {
     }
 
     // ----------- 2) 打包成 chunk（仅在块边界切） -----------
+
+    /**
+     * 贪心打包：从某个块开始向后累加，直到再加一块会超过 max 为止
+     * 三条尺寸规则：① 累计不超 max 就继续吞；② 已超 max 但当前还不足 min，则“忍一次超限”把这块也吸进来；
+     * ③ 收尾时最后一块若明显过小（&lt; min 且 &lt; target/2），并入前一块
+     *
+     * @param blocks  已识别出的块列表
+     * @param textLen 原文总长度（当前实现未直接使用，保留用于区间边界约束）
+     * @param min     块的最小字符数
+     * @param target  块的目标字符数
+     * @param max     块的硬上限字符数
+     * @return 每个 chunk 的 [start, end) 区间列表
+     */
     private List<int[]> packBlocksToChunks(List<Block> blocks, int textLen, int min, int target, int max) {
         List<int[]> ranges = new ArrayList<>();
         int i = 0;
@@ -269,6 +310,16 @@ public class StructureAwareTextChunker implements ChunkingStrategy {
     }
 
     // ----------- 3) 物化为 Chunk，必要时追加 overlap（复制原文尾部） -----------
+
+    /**
+     * 按区间从原文取子串生成 chunk；开启 overlap 时把上一 chunk 的尾部子串拼到当前 chunk 开头
+     * 注意：重叠内容完全来自原文，不会破坏“只在块边界切分”的约束
+     *
+     * @param text    原文
+     * @param ranges  packBlocksToChunks 产出的 [start, end) 区间列表
+     * @param overlap 相邻 chunk 的重叠字符数，0 表示不重叠
+     * @return 物化后的 chunk 列表（index 与 chunkId 已填充）
+     */
     private List<VectorChunk> materialize(String text, List<int[]> ranges, int overlap) {
         if (ranges.isEmpty()) return List.of();
         List<VectorChunk> out = new ArrayList<>();
@@ -298,11 +349,21 @@ public class StructureAwareTextChunker implements ChunkingStrategy {
     }
 
     // ----------- 小工具 -----------
+
+    /**
+     * 从 from 位置起查找下一个换行符下标
+     *
+     * @return 换行符下标；若不存在则返回字符串长度（等价于“最后一行到末尾”）
+     */
     private int indexOfNl(String s, int from) {
         int p = s.indexOf('\n', from);
         return p < 0 ? s.length() : p;
     }
 
+    /**
+     * 仅去掉行尾空白（空格/制表符等），保留行首缩进
+     * 用途：判断行类型时可以忽略行尾空白，但块区间仍保持原文原貌
+     */
     private String trimRightKeepLeft(String s) {
         int r = s.length();
         while (r > 0 && Character.isWhitespace(s.charAt(r - 1)) && s.charAt(r - 1) != '\n' && s.charAt(r - 1) != '\r') {
@@ -311,6 +372,9 @@ public class StructureAwareTextChunker implements ChunkingStrategy {
         return s.substring(0, r);
     }
 
+    /**
+     * 判断 [from, to) 区间内是否全为空白字符（空格/制表符/回车/换行）
+     */
     private boolean isAllBlank(String s, int from, int to) {
         for (int i = from; i < to; i++) {
             char c = s.charAt(i);
@@ -319,6 +383,11 @@ public class StructureAwareTextChunker implements ChunkingStrategy {
         return true;
     }
 
+    /**
+     * 取字符串末尾的 n 个字符作为“尾部”
+     *
+     * @return n &lt;= 0 时返回空串；字符串本身不足 n 个字符时返回全串
+     */
     private String tailByChars(String s, int n) {
         if (n <= 0) return "";
         int len = s.length();
